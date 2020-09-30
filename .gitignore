@@ -1,0 +1,9 @@
+ios/
+android/
+.vscode/
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+wasteagram.iml
