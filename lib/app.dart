@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MyHomePage(title: 'Wasteagram'),
+      home: const MyHomePage(title: 'PhotoJournal'),
     );
   }
 }
