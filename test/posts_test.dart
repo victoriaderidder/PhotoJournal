@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:wasteagram/models/posts.dart';
+import 'package:PhotoJournal/models/posts.dart';
 import 'package:intl/intl.dart';
 
 void main() {

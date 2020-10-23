@@ -6,6 +6,8 @@ class Post {
   double latitude;
   double longitude;
   int quantity;
+  String story;
+  String title;
 
   Post() {
     this.quantity = 0;

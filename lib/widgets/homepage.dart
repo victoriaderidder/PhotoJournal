@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
-import 'package:wasteagram/widgets/detail_screen.dart';
-import 'package:wasteagram/widgets/camera_screen.dart';
+import 'package:PhotoJournal/widgets/detail_screen.dart';
+import 'package:PhotoJournal/widgets/camera_screen.dart';
 
 class MyHomePage extends StatelessWidget {
   static const routeName = '/homepage';
@@ -10,39 +9,37 @@ class MyHomePage extends StatelessWidget {
   final String title;
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-    DateTime now = document['date'].toDate();
-    String formattedDate = DateFormat('EEEE, MMM d, y').format(now);
+    //DateTime now = document['date'].toDate();
     return Semantics(
-      button: true,
-      enabled: true,
-      onTapHint: 'Visit post\'s detail screen.',
-      child: ListTile(
-        title: Row(
-          children: [
-            Expanded(
-              child: Text(
-                formattedDate,
-                style: Theme.of(context).textTheme.headline6,
-              ),
+        button: true,
+        enabled: true,
+        onTapHint: 'Visit post\'s detail screen.',
+        child: new Card(
+          // this makes my entries distinct
+          child: ListTile(
+            title: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    document['title'].toString(),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+                Divider(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ],
             ),
-            Container(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                document['quantity'].toString(),
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
-          ],
-        ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailScreen(document: document)),
-          );
-        },
-      ),
-    );
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailScreen(document: document)),
+              );
+            },
+          ),
+        ));
   }
 
   @override
@@ -55,15 +52,7 @@ class MyHomePage extends StatelessWidget {
           title: StreamBuilder(
               stream: Firestore.instance.collection('posts').snapshots(),
               builder: (context, snapshot) {
-                if (snapshot.hasData &&
-                    snapshot.data.documents != null &&
-                    snapshot.data.documents.length > 0) {
-                  int total = 0;
-                  snapshot.data.documents
-                      .forEach((idx) => total += idx.data['quantity']);
-                  return Text('Wasteagram - $total');
-                }
-                return Text('Wasteagram');
+                return Text('PhotoJournal');
               })),
       body: StreamBuilder(
           stream: Firestore.instance

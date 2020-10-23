@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
 import 'package:location/location.dart';
-import 'package:wasteagram/widgets/homepage.dart';
-import 'package:wasteagram/models/posts.dart';
+import 'package:PhotoJournal/widgets/homepage.dart';
+import 'package:PhotoJournal/models/posts.dart';
+import 'package:flutter/services.dart';
 
 class NewEntry extends StatefulWidget {
   String url;
@@ -73,20 +73,35 @@ class _NewEntryState extends State<NewEntry> {
                       width: 300.0,
                       margin: const EdgeInsets.only(bottom: 25.0),
                       child: TextFormField(
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(30),
+                          ],
                           style: TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 20.0,
                           ),
                           decoration: new InputDecoration(
-                              labelText: "Number of items wasted"),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            WhitelistingTextInputFormatter.digitsOnly
-                          ],
+                              labelText: "Give your photo a brief title"),
                           validator: (value) =>
-                              value.isEmpty ? "Quantity cannot be blank" : null,
+                              value.isEmpty ? "Title cannot be blank" : null,
                           onSaved: (value) {
-                            post.quantity = int.parse(value);
+                            post.title = value;
+                          }),
+                    ),
+                    Container(
+                      width: 300.0,
+                      margin: const EdgeInsets.only(bottom: 25.0),
+                      child: TextFormField(
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontSize: 20.0,
+                          ),
+                          decoration: new InputDecoration(
+                              labelText: "What's this photo's story?"),
+                          validator: (value) =>
+                              value.isEmpty ? "Story cannot be blank" : null,
+                          onSaved: (value) {
+                            post.story = value;
                           }),
                     ),
                     Semantics(
@@ -104,7 +119,8 @@ class _NewEntryState extends State<NewEntry> {
                                   .collection('posts')
                                   .document()
                                   .setData({
-                                'quantity': post.quantity,
+                                'story': post.story,
+                                'title': post.title,
                                 'date': post.date,
                                 'latitude': post.latitude,
                                 'longitude': post.longitude,

@@ -29,10 +29,11 @@ class DetailScreen extends StatelessWidget {
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
-            title: Text('Detail Screen'),
+            title: Text(document['title'].toString()),
           ),
           body: Center(
-              child: Column(
+              child: SingleChildScrollView(
+                  child: Column(
             children: [
               Container(
                   // get some spacing for my date
@@ -40,23 +41,23 @@ class DetailScreen extends StatelessWidget {
                   child: Text(formattedDate.toString(),
                       style: TextStyle(fontSize: 25.0))),
               Container(
-                  // image fits just within vertical screen
-                  height: 350.0,
-                  width: 350.0,
-                  child: Image.network(document['imageURL'])),
-              // just didn't feel like I needed spacing for this
-              Text(document['quantity'].toString() + ' items wasted',
-                  style: TextStyle(fontSize: 25.0)),
-              Container(
                   // spacing for lat & long
-                  margin: const EdgeInsets.only(top: 25.0),
+                  margin: const EdgeInsets.only(top: 5.0),
                   child: Text('Location: (' +
                       document['latitude'].toString() +
                       ', ' +
                       document['longitude'].toString() +
                       ')')),
+              Container(
+                  // image fits just within vertical screen
+                  height: 350.0,
+                  width: 350.0,
+                  child: Image.network(document['imageURL'])),
+              // just didn't feel like I needed spacing for this
+              Text(document['story'].toString(),
+                  style: TextStyle(fontSize: 18.0)),
             ],
-          )),
+          ))),
         ));
   }
 }

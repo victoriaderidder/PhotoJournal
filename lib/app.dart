@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wasteagram',
+      title: 'PhotoJournal',
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.blueGrey,
         accentColor: Colors.blueGrey,

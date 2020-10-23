@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:wasteagram/widgets/homepage.dart';
-import 'package:wasteagram/widgets/new_entry.dart';
+import 'package:PhotoJournal/widgets/homepage.dart';
+import 'package:PhotoJournal/widgets/new_entry.dart';
 
 class CameraScreen extends StatefulWidget {
   static const routeName = '/detail-screen';
