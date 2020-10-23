@@ -1,3 +1,3 @@
 # PhotoJournal
 
-A photo diary app created in Flutter and Dart for iOS.
+A photo diary app created for iOS using Flutter and Dart.
